@@ -1,0 +1,47 @@
+/* Estilos inspirados no Znote AAC para blocos, títulos e sidebar */
+.znote-box {
+    background: #e2d7b7;
+    border: 2px solid #bfa76f;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 8px #bfa76f33;
+}
+.znote-title {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 1.3em;
+    color: #6b4f1d;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #bfa76f;
+    padding-bottom: 4px;
+}
+.znote-content {
+    font-size: 1em;
+    color: #3a2d13;
+}
+.znote-sidebar {
+    margin-top: 2em;
+    background: #f5ecd6;
+    border: 1px solid #bfa76f;
+    border-radius: 6px;
+    padding: 12px 10px;
+    margin-left: 20px;
+}
+.site-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.content-area {
+    flex: 1 1 0%;
+    min-width: 0;
+}
+@media (max-width: 900px) {
+    .site-wrapper { flex-direction: column; }
+    .znote-sidebar { margin-left: 0; margin-top: 20px; }
+}
+
+.znote-box highscores-box{
+    margin-top: 30px;
+}
+
