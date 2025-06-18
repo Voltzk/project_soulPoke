@@ -241,6 +241,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/myaccount', [AccountController::class, 'handleAction'])->name('myaccount.action');
 });
 
+Route::post('/shop/purchase/{id}', [ShopController::class, 'purchase'])->middleware('auth')->name('shop.purchase');
+
 Route::get('/sidebar-data', function () {
     // Top 5 players
     $topPlayers = Cache::remember('top_players', 60, function () {

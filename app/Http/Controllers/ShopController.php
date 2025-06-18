@@ -3,34 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ShopOffer;
+use App\Models\Account;
 
 class ShopController extends Controller
 {
     public function index()
     {
-        // Exemplo de ofertas (você pode substituir por dados do banco depois)
-        $offers = [
-            'items' => [
-                ['name' => 'Crystal coin', 'image' => 'coin.png', 'count' => '5x', 'points' => 100],
-                ['name' => 'Fire sword', 'image' => 'firesword.png', 'count' => '1x', 'points' => 10],
-            ],
-            'premium' => [
-                ['name' => 'Premium membership', 'image' => 'premium.png', 'duration' => '7 Days', 'points' => 25],
-            ],
-            'outfits' => [
-                ['name' => 'Nobleman with both addons', 'image' => 'nobleman.png', 'points' => 20],
-                ['name' => 'Noblewoman with both addons', 'image' => 'noblewoman.png', 'points' => 20],
-            ],
-            'mounts' => [
-                ['name' => 'Gnarhound mount', 'image' => 'gnarhound.png', 'points' => 20],
-                ['name' => 'War horse', 'image' => 'warhorse.png', 'points' => 20],
-            ],
-            'misc' => [
-                ['name' => 'Change character gender', 'count' => '3x', 'points' => 10],
-                ['name' => 'Change character gender', 'count' => 'Unlimited', 'points' => 20],
-                ['name' => 'Change character name', 'count' => '1x', 'points' => 20],
-            ],
-        ];
+        // Busca ofertas do banco de dados
+        $offers = ShopOffer::all()->groupBy('type');
         return view('shop.index', compact('offers'));
+    }
+
+    public function purchase(Request $request, $id)
+    {
+        $offer = ShopOffer::findOrFail($id);
+        $account = auth()->user()->account;
+
+        if ($account->points < $offer->cost) {
+            return back()->with('error', 'Not enough points.');
+        }
+
+        // Desconta pontos
+        $account->points -= $offer->cost;
+
+        // Se for oferta de points, adiciona points
+        if ($offer->type === 'points') {
+            $account->points += $offer->value;
+        }
+        // Se for oferta de item, lógica para entregar item pode ser implementada aqui
+        // ...
+
+        $account->save();
+
+        return back()->with('success', 'Offer purchased!');
     }
 }
