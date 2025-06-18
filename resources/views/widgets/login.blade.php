@@ -1,12 +1,18 @@
 <div class="sidebar">
     <h2>Login / Register</h2>
     <div class="inner">
+        @if($errors->has('login'))
+            <div style="color: red; margin-bottom: 1em;">{{ $errors->first('login') }}</div>
+        @endif
+        @if(session('success'))
+            <div style="color: green; margin-bottom: 1em;">{{ session('success') }}</div>
+        @endif
         <form action="{{ route('login') }}" method="post">
             @csrf
             <ul id="login">
                 <li>
                     Username: <br>
-                    <input type="text" name="name" value="{{ old('username') }}">
+                    <input type="text" name="name" value="{{ old('name') }}">
                 </li>
                 <li>
                     Password: <br>
