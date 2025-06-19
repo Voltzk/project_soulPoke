@@ -296,10 +296,12 @@ nav {
 .content ul li,
 .sidebar ul li {
   list-style-type: none;
-  background: url(../images/bullet.png) no-repeat;
-  margin: 0 0 0 0;
-  padding: 0 0 4px 28px;
+  margin: 0 0 9px 0;
+  padding: 0;
   line-height: 1.5em;
+  align-content: center;
+  display: 1 1 flex;
+  align-items: center;  
 }
 
 footer {
@@ -850,6 +852,7 @@ body {
   display: flex;
   gap: 2rem;
   align-items: flex-start;
+  padding-bottom: 30px;
 }
 
 /* Conteúdo principal */
@@ -1048,4 +1051,41 @@ body {
 .character-quests .znote-table {
     width: 100%;
     font-size: 0.98em;
+}
+
+.btn.btn-pokedash-primary {
+  background-color: #e2c98c;
+  color: #444;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.btn.btn-pokedash-primary:hover {
+  background-color: #d69000;
+  color: #fff;
+}
+
+.btn.btn-login{
+    background-color: #e2c98c;
+  color: #444;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.btn.btn-login:hover {
+  background-color: #d69000;
+  color: #fff;
+}
+
+.form-login{
+  text-decoration: none;
 }

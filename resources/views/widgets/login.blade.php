@@ -7,7 +7,7 @@
         @if(session('success'))
             <div style="color: green; margin-bottom: 1em;">{{ session('success') }}</div>
         @endif
-        <form action="{{ route('login') }}" method="post">
+        <form class= "form-login" action="{{ route('login') }}" method="post">
             @csrf
             <ul id="login">
                 <li>
@@ -20,7 +20,7 @@
                 </li>
                 {{-- Adapte para 2FA/captcha se necessário --}}
                 <li>
-                    <input type="submit" value="Log in">
+                <center><input type="submit" class="btn btn-login" name="login" value="Log in"></center>
                 </li>
             </ul>
             <center>

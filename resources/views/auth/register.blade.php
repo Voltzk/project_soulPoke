@@ -20,30 +20,33 @@
             @csrf
             <ul style="list-style: none; padding: 0;">
                 <li>
-                    <img src="{{ asset('images/pokeball.png') }}" style="vertical-align: middle; width:18px;"> Account Name:<br>
+                    <i> Account Name:</i>
+                    <br>
                     <input type="text" name="name" value="{{ old('name') }}" required>
                 </li>
                 <li>
-                    <img src="{{ asset('images/pokeball.png') }}" style="vertical-align: middle; width:18px;"> Password:<br>
+                    <i> Password: </i>
+                    <br>
                     <input type="password" name="password" required>
                 </li>
                 <li>
-                    <img src="{{ asset('images/pokeball.png') }}" style="vertical-align: middle; width:18px;"> Password again:<br>
+                    <i> Password again: </i>
+                    <br>
                     <input type="password" name="password_confirmation" required>
                 </li>
                 <li>
-                    <img src="{{ asset('images/pokeball.png') }}" style="vertical-align: middle; width:18px;"> Email:<br>
+                    <i> Email: </i>
+                    <br>
                     <input type="email" name="email" value="{{ old('email') }}" required>
                 </li>
-                <li>
-                    <img src="{{ asset('images/pokeball.png') }}" style="vertical-align: middle; width:18px;"> Country:<br>
-                    <select name="country" required>
-                        <option value="">(Please choose)</option>
+                <span style="display:none;"><li>
+                    <span style="display:none;"><select name="country" required>
+                        <option value=""></option>
                         @foreach(config('countries') as $code => $country)
-                            <option value="{{ $code }}" @if(old('country') == $code) selected @endif>{{ $country }}</option>
+                            <option value="{{ $code }}" @if(old('country') == $code || (is_null(old('country')) && $code == 'BR')) selected @endif>{{ $country }}</option>
                         @endforeach
                     </select>
-                </li>
+                </li></span>
                 <li style="margin-top: 1em;">
                     <span class="znote-title" style="font-size:1.1em; color:#009FBC;">Server Rules</span>
                     <div class="znote-content">
@@ -55,16 +58,12 @@
                     </div>
                 </li>
                 <li>
-                    <img src="{{ asset('images/pokeball.png') }}" style="vertical-align: middle; width:18px;"> Do you agree to follow the server rules?<br>
-                    <select name="rules_agree" required>
-                        <option value="0">Umh...</option>
-                        <option value="1" @if(old('rules_agree')==1) selected @endif>Yes.</option>
-                        <option value="2" @if(old('rules_agree')==2) selected @endif>No.</option>
-                    </select>
+                    <input type="checkbox" id="rules_agree" name="rules_agree" value="1" @if(old('rules_agree') == 1) checked @endif required>
+                    <label for="rules_agree"><i>I agree to follow the server rules.</i></label>
                 </li>
-                <li style="margin-top: 1em;">
-                    <button type="submit">Create Account</button>
-                </li>
+                <div>
+                    <button type="submit" class="btn btn-pokedash-primary">Create Account</button>
+                </div>
             </ul>
         </form>
     </div>
